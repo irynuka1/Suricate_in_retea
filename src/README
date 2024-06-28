@@ -1,0 +1,60 @@
+# 314CA Coitu Sebastian - Teodor
+
+    În această temă am implementat task-urile 1, 2 și bonusul.
+
+    Task1 (paranthesinator):
+        Problema a fost anterior rezolvată la un laborator de SD, așa că am
+    avut deja o idee despre cum să o rezolv. În momentul în care se întâlnește
+    o paranteză deschisă, aceasta este adăugată pe stivă. Dacă paranteza cu-
+    rentă este închisă, se verifică dacă ultima paranteză de pe stivă este de
+    același tip. Dacă da, aceasta este eliminată din stivă. Dacă nu, se trece
+    la "wrong", unde se atribuie valoarea 1 lui eax. În momentul în care se
+    termină de citit input-ul, se verifică dacă stiva este goală. Dacă da,
+    se atribuie valoarea 0 lui eax, altfel se atribuie valoarea 1.
+
+    Task 2 (subtask1 / subtask2):
+        Pentru primul subtask am avut de implementat quicksort. De asemenea,
+    problema aceasta a fost implementată anterior în C, așa c[] am parcurs
+    aceeași metodă de rezolvare. Am ales ca pivot ultimul element din vector,
+    iar apoi am parcurs vectorul și am mutat elementele mai mici decât pivotul
+    în stânga acestuia, iar pe cele mai mari în dreapta (în "qsort_loop"). În
+    "qsort_recall" am reapelat quicksort pentru subvectorii stângi și drepti.
+    Funcția ia sfârșit când indexul de început devine mai mare decât cel de
+    sfârșit, caz în care vectorul este sortat.
+        Pentru al doilea subtask am avut de implementat binary search. De la 
+    început ecx conține vectorul de elemente, iar edx conține elementul căutat.
+    Verificăm dacă indexul de început este mai mare decât cel de sfârșit, caz
+    în care elementul nu a fost găsit și se trece la "not_found". Dacă nu, se
+    calculează indexul elementului din mijlocul vectorului și se compară cu
+    elementul căutat. Dacă elementul din mijloc este mai mare decât cel căutat,
+    se trece la subvectorul stâng, altfel la cel drept, unde se reapelează
+    funcția. Aceasta ia sfârșit când se găsește elementul sau când indexul de
+    început devine mai mare decât cel de sfârșit.
+
+    Bonus (functional):
+        Pentru bonus am avut de implementat două funcții, "map" și "reduce".
+    Pentru lucrul pe 64 de biți a fost necesar să foloesc regiștrii rdi, rsi,
+    rdx, rcx, r8, deoarece în această ordine sunt păstrate argumentele
+    funcțiilor.
+
+        Map:
+        Pentru fiecare element din vectorul sursă (memorat în rsi) se aplică
+    funcția primită ca parametru (memorată în rcx). Rezultatul în urma apelului
+    funcției (rax) este memorat pe poziția corespunzătoare din vectorul
+    destinație (rdi). Procesul continuă până când numărul de elemente din
+    vectorul sursă (rdx) este egal cu contorul nostru (rbx).
+
+        Reduce:
+        Pentru fiecare element din vectorul sursă (memorat în rsi) se aplică
+    funcția primită ca parametru (memorată în r8). Rezultatul (rax) este me-
+    morat în acumulatorul nostru (rcx). Procesul continuă până când numărul de
+    elemente din vectorul sursă (rdx) este egal cu contorul nostru (rbx), mo-
+    ment în care funcția va returna acummulatorul final (rdi).
+
+    Feedback:
+        Am avut ocazia să descopăr lucruri noi și să învăț mai mult lucrul pe
+    stivă. Mi s-a părut interesant bonusul, deaorece a trebuit implementat pe
+    64 de biți și chiar mi-aș dori să se lucreze numai așa și la laborator.
+    Mi s-a părut ciudat totuși că în exemplul de pseudocod de la "reduce" nu
+    era inclus vectorul destinație ca argument al funcției, iar în fișierul
+    .c era inclus.
